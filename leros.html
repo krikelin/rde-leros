@@ -1,0 +1,201 @@
+<head>
+  <title>leros</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/bootstrap.css" type="text/css" />
+</head>
+
+<body>
+  <header class="header">
+  </header>
+  <nav class="navbar navbar-inverse">
+    <div class="navbar-inner">
+      <div class="container-fluid">
+        <a class="brand" href="#">Leros</a>
+       <!-- <ul class="nav">
+            <li data-item="home" class="active"><a href="#!/home">Home</a></li>
+
+           
+            <li><a href="#!/home">Home</a></li>
+            <li ><a href="#!/home">Blog</a></li>
+          </ul>
+       <!--   <form class="navbar-search pull-right" action="">
+            <input type="text" class="search-query span2" placeholder="Search">
+          </form>-->
+          <div class="pull-right">
+            
+          </div>
+        <div class="nav-collapse">
+          
+        </div>
+      </div>
+  </nav>
+  <ul class="nav nav-pills">  
+    <li data-item="home" class="active"><a href="#!/home"><i class="icon-home icon-white"></i> Home</a></li>
+    <li data-item="lockouts"><a href="#!/lockouts">Lockouts</a></li>
+    <li data-item="promotions"><a href="#!/promotions">Promotions</a></li>
+    <li style="float: right">   
+        {{loginButtons align="right"}}
+    </li>
+    
+  </ul>
+    
+  <div class="container-fluid">
+        <div id="home" class="row-fluid section">
+          <h1>Welcome!</h1>
+        </div>
+        <div id="lockouts" class="row-fluid section">
+          {{>lockouts}}
+          
+        </div>  
+        <div id="promotions" class="row-fluid section">
+          {{>promotions}}
+          
+        </div>  
+        <div id="secure" class="row-fluid section">
+          {{>secure}}
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer class="footer">
+     <center>&copy; 2013 Alexander Forselius</center>
+  </footer>
+</body>
+
+<template name="page">
+  {{msg}}
+</template>
+<template name="secure">
+  <div class="span8">
+    <h1>Secure the opportunity</h3>
+    <button class="btn btn-success secure" id="{{code}}">Secure</button>
+    <button class="btn btn-danger reject" id="{{code}}">Reject</button>
+  </div>
+</template>
+<template name="promotions">
+  <div class="span8">
+  <h1>Submissions</h1>
+    <table class="table table-bordered table-striped table-condensed">
+      <thead>   
+         <tr>
+            <th></th>
+            <th>Submission date</th>
+            <th>Title</th>
+            <th>Price</th>
+            <th>Securelink</th>
+            <th></th>
+        </tr>
+      </thead>
+      <tbody>
+    {{#each submissions}}
+      <tr data-id="{{_id}}">
+        <td></td>
+        <td>{{submissionDate}}</td>
+        <td>{{name}}</td>
+        <td>{{price}}</td>
+        <td><a href="http://leros.meteor.com/#!/promotions/{{code}}/secure">{{code}}</a></td>
+        <td></td>
+      </tr>
+    {{/each}}
+      </tbody>
+    </table>
+    <h1>Secured promotions</h1>
+    <table id="promotions" class="table table-bordered table-striped table-condensed">
+      <thead>   
+         <tr>
+            <th></th>
+            <th>Date secured</th>
+            <th>Title</th>
+            <th>Price</th>
+            <th></th>
+        </tr>
+      </thead>
+      <tbody>
+    {{#each promotions}}
+      <tr data-id="{{id}}">
+        <td></td>
+        <td>{{promotionDate}}</td>
+        <td>{{name}}</td>
+        <td>{{price}}</td>
+     <!--   <td><button class="btn btn-danger delete-p" id="{{_id}}">Delete</button></td> -->
+        <td></td>
+      </tr>
+    {{/each}}
+      </tbody>
+    </table>
+
+    <h1>Rejected promotions</h1>
+    <table id="promotions" class="table table-bordered table-striped table-condensed">
+      <thead>   
+         <tr>
+            <th></th>
+            <th>Date secured</th>
+            <th>Title</th>
+            <th>Price</th>
+            <th>Action</th>
+            <th></th>
+        </tr>
+      </thead>
+      <tbody>
+    {{#each rejected}}
+      <tr data-id="{{id}}">
+        <td></td>
+        <td>{{promotionDate}}</td>
+        <td>{{name}}</td>
+        <td>{{price}}</td>
+     <!--   <td><button class="btn btn-danger delete-p" id="{{_id}}">Delete</button></td> -->
+        <td></td>
+      </tr>
+    {{/each}}
+      </tbody>
+    </table>
+  </div>
+<div class="span3 well" id="addPromotion">
+  <h3>Add promotion</h3>
+  <label for="name">Name</label>
+  <input type="text" id="name" value="Spotify blog promotion" />
+  <label for="description">Description</label>
+  <input type="text" id="description"placeholder="Description" />
+  <label for="price">Price</label>
+  <input type="text" id="price" value="0" type="number"/>
+  <label for="submissionDate">Submission date</label>
+  <input type="text" id="submissionDate" value="2013-04-01"/>
+  <label for="promotionDate">Promotion date</label>
+  <input type="text" id="promotionDate"/>
+  <label for="code">Coupon code</label>
+  <input type="text" id="code" value="spotifyblog" /><br />
+
+  <button id="submit" class="btn btn-primary">Add</button>
+</div>
+</template>
+<template name="lockouts">
+  <div class="span8">
+    <table class="table table-bordered table-striped table-condensed">
+      <thead>   
+         <tr>
+            <th></th>
+            <th>Start date</th>
+            <th>End date</th>
+            <th>Delete</th>
+            <th></th>
+        </tr>
+      </thead>
+      <tbody>
+    {{#each lockouts}}
+      <tr data-id="{{id}}">
+        <td></td>
+        <td>{{startDate}}</td>
+        <td>{{endDate}}</td>
+        <td><button class="btn btn-danger delete" id="{{_id}}">Delete</button></td>
+        <td></td>
+      </tr>
+    {{/each}}
+      </tbody>
+    </table>
+  </div>
+   <div class="span4 well" id="addLockout">
+    <input id="startDate" type="datetime" value="2013-03-27" placeholder="Start Date" />
+    <input id="endDate" type="datetime" value="2013-04-03" placeholder="End Date" />
+    <button id="submit" class="btn btn-primary">Add</button>
+  </div> 
+</template>
