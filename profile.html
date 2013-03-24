@@ -1,0 +1,24 @@
+<template name="profile">
+	<div class="row-fluid">
+		<div class="span8">
+			{{#with profile}}
+			<h1>{{owner}}</h1>
+			<div class="well">
+
+			<p>{{bio}}</p>
+			</div>
+			{{/with}}
+		
+		<h1>Experience</h1>
+		<div class="well">
+			{{#each promotions}}
+
+			<div class="post" data-id="{{id}}">
+				<h3>{{name}}</h3>
+				<b>Description</b>
+				<p>{{description}}</p>
+			</div>
+			{{/each}}
+		</div>
+	</div>
+</template>

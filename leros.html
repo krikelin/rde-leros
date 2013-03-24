@@ -1,60 +1,59 @@
 <head>
   <title>leros</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/bootstrap.css" type="text/css" />
+  <link rel="stylesheet" href="/css/spotify-bootstrap.css" type="text/css" />
 </head>
 
 <body>
-  <header class="header">
+  <
+  <header style="height: 60px">
   </header>
-  <nav class="navbar navbar-inverse">
-    <div class="navbar-inner">
-      <div class="container-fluid">
-        <a class="brand" href="#">Leros</a>
-       <!-- <ul class="nav">
-            <li data-item="home" class="active"><a href="#!/home">Home</a></li>
-
-           
-            <li><a href="#!/home">Home</a></li>
-            <li ><a href="#!/home">Blog</a></li>
-          </ul>
-       <!--   <form class="navbar-search pull-right" action="">
-            <input type="text" class="search-query span2" placeholder="Search">
-          </form>-->
-          <div class="pull-right">
+   <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span2">
+        </div>
+        <div class="span8">
+          <ul class="nav nav-pills">  
+            <li data-item="home" class="active"><a href="#!/home"><i class="icon-home icon-white"></i> Home</a></li>
+            <li data-item="lockouts"><a href="#!/lockouts">Lockouts</a></li>
+            <li data-item="promotions"><a href="#!/promotions">Promotions</a></li>
+            <li style="float: right">   
+                {{loginButtons align="right"}}
+            </li>
             
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid main">
+      <div class="row-fluid">
+        <div class="span2">
+        </div>
+        <div class="span8">
+          <div class="row-fluid">
+            <div id="home" class="row-fluid section">
+              <h1>Welcome!</h1>
+            </div>
+            <div id="lockouts" class="row-fluid section">
+              {{>lockouts}}
+              
+            </div>  
+            <div id="promotions" class="row-fluid section">
+              {{>promotions}}
+              
+            </div>  
+            <div id="secure" class="row-fluid section">
+              {{>secure}}
+            </div>
+            <div id="secured" class="row-fluid section">
+              <h1>Thanks for your reply</h1>
+              <p>You can close this page now!</p>
+            </div>
+            <div id="profile" class="row-fluid section">
+              {{> profile}}
+            </div>
           </div>
-        <div class="nav-collapse">
-          
         </div>
-      </div>
-  </nav>
-  <ul class="nav nav-pills">  
-    <li data-item="home" class="active"><a href="#!/home"><i class="icon-home icon-white"></i> Home</a></li>
-    <li data-item="lockouts"><a href="#!/lockouts">Lockouts</a></li>
-    <li data-item="promotions"><a href="#!/promotions">Promotions</a></li>
-    <li style="float: right">   
-        {{loginButtons align="right"}}
-    </li>
-    
-  </ul>
-    
-  <div class="container-fluid">
-        <div id="home" class="row-fluid section">
-          <h1>Welcome!</h1>
-        </div>
-        <div id="lockouts" class="row-fluid section">
-          {{>lockouts}}
-          
-        </div>  
-        <div id="promotions" class="row-fluid section">
-          {{>promotions}}
-          
-        </div>  
-        <div id="secure" class="row-fluid section">
-          {{>secure}}
-        </div>
-      </div>
     </div>
   </div>
   <footer class="footer">
@@ -75,7 +74,7 @@
 <template name="promotions">
   <div class="span8">
   <h1>Submissions</h1>
-    <table class="table table-bordered table-striped table-condensed">
+    <table cellspacing="0" class="table table-bordered table-striped table-condensed">
       <thead>   
          <tr>
             <th></th>
@@ -83,6 +82,8 @@
             <th>Title</th>
             <th>Price</th>
             <th>Securelink</th>
+            <th>Edit</th>
+            <th>Deleted</th>
             <th></th>
         </tr>
       </thead>
@@ -93,7 +94,9 @@
         <td>{{submissionDate}}</td>
         <td>{{name}}</td>
         <td>{{price}}</td>
-        <td><a href="http://leros.meteor.com/#!/promotions/{{code}}/secure">{{code}}</a></td>
+        <td><a href="http://leros.meteor.com/#!/promotions/{{code}}/secure">{{code}}</a></td> 
+        <td><button class="btn btn-danger edit" id="{{_id}}">Edit</button></td> 
+        <td><button class="btn btn-danger delete" id="{{_id}}">Delete</button></td> 
         <td></td>
       </tr>
     {{/each}}
@@ -107,6 +110,7 @@
             <th>Date secured</th>
             <th>Title</th>
             <th>Price</th>
+          <!--  <th></th> -->
             <th></th>
         </tr>
       </thead>
@@ -117,7 +121,8 @@
         <td>{{promotionDate}}</td>
         <td>{{name}}</td>
         <td>{{price}}</td>
-     <!--   <td><button class="btn btn-danger delete-p" id="{{_id}}">Delete</button></td> -->
+     <!--   <td><button class="btn btn-danger delete-p" id="{{_id}}">Delete</button></td> 
+        <td><button class="btn btn-danger edit-p" id="{{_id}}">Edit</button></td> -->
         <td></td>
       </tr>
     {{/each}}
@@ -133,6 +138,7 @@
             <th>Title</th>
             <th>Price</th>
             <th>Action</th>
+            <th></th>
             <th></th>
         </tr>
       </thead>

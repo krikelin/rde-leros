@@ -1,0 +1,6 @@
+db.Promotions.find()
+db.users.find()
+db.Users.find()
+db.users.find()
+db.Promotions.find()
+meteor deploy leros.meteor.com

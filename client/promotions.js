@@ -1,4 +1,4 @@
-var promotions = new Meteor.Collection('Promotions');
+
 Template.promotions.submissions = function () {
     return promotions.find({promotionDate: null, rejectedDate: null}, { sort: {submissionDate: -1}});
 };
@@ -17,6 +17,7 @@ Template.secure.events({
       Meteor.call('securePromotion', {
         code: e.target.id
       }); 
+      setSection('secured');
       
     },
     'click .reject': function (e, t) {

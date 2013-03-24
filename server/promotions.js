@@ -1,5 +1,3 @@
-var promotions = new Meteor.Collection('Promotions');
-
 // #Permissions
 promotions.allow({
   insert: function (userId, doc) {
@@ -19,12 +17,15 @@ console.log(this.userId);
 // Publish lockouts
 Meteor.publish('Promotions', function () {
   console.log('user id: 2' + this.userId);
-  return promotions.find({owner: this.userId}, {sort: {submissionDate: -1, promotionDate: -1}});
+  var user = Meteor.users.findOne({_id: this.userId});
+  console.log('user id', user.username);
+  return promotions.find({owner: user.username}, {sort: {submissionDate: -1, promotionDate: -1}});
 });
 
 Meteor.methods({
   'removePromotion': function (data) {
-    promotions.remove({_id: data.id, owner: this.userId});  
+    var user = Meteor.users.findOne({_id: this.userId});
+    promotions.remove({_id: data.id, owner: user.username});  
   },
   'securePromotion': function(data) {
     console.log("Securing promotion " + data);
@@ -58,6 +59,7 @@ Meteor.methods({
   },
   'submitPromotion': function (data) {
     console.log(data);
+    var user = Meteor.users.findOne({_id: this.userId});
     console.log('user id: ' + this.userId);
     promotions.insert({
       name: data.name,
@@ -66,7 +68,7 @@ Meteor.methods({
       submissionDate: data.submissionDate,
       promotionDate: data.promotionDate,
       rejectedDate: null,
-      owner: this.userId,
+      owner: user.username,
       code: data.code
     });
   }

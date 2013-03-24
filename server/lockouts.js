@@ -1,5 +1,3 @@
-var lockouts = new Meteor.Collection('Lockouts');
-
 console.log(this.userId);
 // Publish lockouts
 Meteor.publish('Lockouts', function () {
