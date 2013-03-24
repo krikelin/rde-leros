@@ -74,87 +74,55 @@
 <template name="promotions">
   <div class="span8">
   <h1>Submissions</h1>
-    <table cellspacing="0" class="table table-bordered table-striped table-condensed">
-      <thead>   
-         <tr>
-            <th></th>
-            <th>Submission date</th>
-            <th>Title</th>
-            <th>Price</th>
-            <th>Securelink</th>
-            <th>Edit</th>
-            <th>Deleted</th>
-            <th></th>
-        </tr>
-      </thead>
-      <tbody>
-    {{#each submissions}}
-      <tr data-id="{{_id}}">
-        <td></td>
-        <td>{{submissionDate}}</td>
-        <td>{{name}}</td>
-        <td>{{price}}</td>
-        <td><a href="http://leros.meteor.com/#!/promotions/{{code}}/secure">{{code}}</a></td> 
-        <td><button class="btn btn-danger edit" id="{{_id}}">Edit</button></td> 
-        <td><button class="btn btn-danger delete" id="{{_id}}">Delete</button></td> 
-        <td></td>
-      </tr>
+  {{#each submissions}}
+  <article>
+      <span>{{name}}</span>
+        <date style="float: right">{{submissionDate}}</date><br />
+    <div style="float: right">
+
+      <button style="float: left" class="btn btn-danger edit" id="{{_id}}">Edit</button>
+      <button style="float: left" class="btn btn-danger delete" id="{{_id}}">Delete</button>
+    </div>
+      <p>{{price}}</p>
+    
+  </article>
     {{/each}}
-      </tbody>
-    </table>
     <h1>Secured promotions</h1>
-    <table id="promotions" class="table table-bordered table-striped table-condensed">
-      <thead>   
-         <tr>
-            <th></th>
-            <th>Date secured</th>
-            <th>Title</th>
-            <th>Price</th>
-          <!--  <th></th> -->
-            <th></th>
-        </tr>
-      </thead>
-      <tbody>
+  
     {{#each promotions}}
-      <tr data-id="{{id}}">
-        <td></td>
-        <td>{{promotionDate}}</td>
-        <td>{{name}}</td>
-        <td>{{price}}</td>
-     <!--   <td><button class="btn btn-danger delete-p" id="{{_id}}">Delete</button></td> 
-        <td><button class="btn btn-danger edit-p" id="{{_id}}">Edit</button></td> -->
-        <td></td>
-      </tr>
+      <article>
+       
+        <span>{{name}}</span>
+         <date style="float: right">{{promotionDate}}</date><br />
+        <div style="float: right">
+
+        
+          <button style="float: left" class="btn btn-danger delete-p" id="{{_id}}">Delete</button>
+          <button style="float: left" class="btn btn-danger edit-p" id="{{_id}}">Edit</button>
+        </div>
+          <p>{{price}}</p>
+        </span>
+       
+      </article>
     {{/each}}
-      </tbody>
-    </table>
 
     <h1>Rejected promotions</h1>
-    <table id="promotions" class="table table-bordered table-striped table-condensed">
-      <thead>   
-         <tr>
-            <th></th>
-            <th>Date secured</th>
-            <th>Title</th>
-            <th>Price</th>
-            <th>Action</th>
-            <th></th>
-            <th></th>
-        </tr>
-      </thead>
-      <tbody>
+   
     {{#each rejected}}
-      <tr data-id="{{id}}">
-        <td></td>
-        <td>{{promotionDate}}</td>
-        <td>{{name}}</td>
-        <td>{{price}}</td>
-     <!--   <td><button class="btn btn-danger delete-p" id="{{_id}}">Delete</button></td> -->
-        <td></td>
-      </tr>
+        <article>
+          
+          <span>{{name}}</span>
+
+        <date style="float: right">{{submissionDate}}</date><br />
+          <div style="float: right">
+            <button style="float: left" class="btn btn-danger delete-p" id="{{_id}}">Delete</button>
+            <button style="float: left" class="btn btn-danger edit-p" id="{{_id}}">Edit</button>
+          </div>
+          <p>{{price}}</p>
+          
+        </article>
     {{/each}}
-      </tbody>
-    </table>
+   
   </div>
 <div class="span3 well" id="addPromotion">
   <h3>Add promotion</h3>

@@ -1,6 +1,6 @@
 <template name="profile">
 	<div class="row-fluid">
-		<div class="span8">
+		<div>
 			{{#with profile}}
 			<h1>{{owner}}</h1>
 			<div class="well">
@@ -10,14 +10,15 @@
 			{{/with}}
 		
 		<h1>Experience</h1>
-		<div class="well">
+		<div>
 			{{#each promotions}}
 
-			<div class="post" data-id="{{id}}">
-				<h3>{{name}}</h3>
+			<article>
+				<date style="float: right">{{promotionDate}}</date>
+				<p>{{name}}</p>
 				<b>Description</b>
 				<p>{{description}}</p>
-			</div>
+			</article>
 			{{/each}}
 		</div>
 	</div>
